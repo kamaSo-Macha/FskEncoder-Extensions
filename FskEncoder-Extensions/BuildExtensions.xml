@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="Build Extensions" name="Build Extensions">
+ 
+	<property name="ext.root" location="H:/GitRepository/FskEncoder-Extensions/FskEncoder-Extensions"/>
+	<property name="ext.target" value="FskEncoder-ext-dist.zip" />
+
+
+	<include file="${ext.root}/ExtensionsBuildSupport.xml" />
+
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	  <classpath>
+	    <pathelement location="C:/Users/Stefan/.p2/pool/plugins/ant-contrib-1.0b3-bin/ant-contrib/ant-contrib-1.0b3.jar"/>
+	  </classpath>
+	</taskdef>
+	
+	
+	<target name="Build Extensions" description="">
+		
+		<antcall target="pack extensions" />
+		
+	</target>
+	
+	
+	<target name="clean extensions" description="Deletes ALL files and folders in the 'dist' directory" >
+	</target>
+	
+	
+	<target name="pack extensions" depends="bild all extensions" description="Packes all files and folders in a ZIP container. Depends on 'build all'">
+		
+		<delete file="${dir.dist}/${ext.target}" failonerror="no" />
+		
+		<zip destfile="${dir.dist}/${ext.target}"
+			basedir="${dir.dist}"
+			excludes="*.zip **/FskEncoder.* **/Extension.properties cfg/Empty.properties"
+		/>
+		
+	</target>
+	
+	
+	<target name="bild all extensions" description="Build all extensions" >
+		
+		<tstamp>
+			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
+		</tstamp>
+
+		<echo message="${current.time}" />      
+		
+		<for param="file">
+			
+			<path>
+				<fileset dir="${ext.root}/build" includes="*.xml" excludes="*Template.*"/>
+			</path>
+
+			<sequential>
+			
+				<local name="name"/>
+				<basename file="@{file}" property="name" />
+				
+				<echo message=" Calling 'build all' of @{file}"/>
+				<ant antfile="@{file}" target="build all"/>
+				
+			</sequential>
+			
+		</for>     
+
+	</target>
+
+	
+</project>

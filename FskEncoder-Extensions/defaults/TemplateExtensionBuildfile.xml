@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="build all" name="_extension_name_">
 
-	<include file="../BuildSupport.xml" />
+	<include file="../ExtensionBuildSupport.xml" />
 	
 	<property name="targetName" 		value="${ant.project.name}" />
 	
-	<property name="dir.scriptsRepo"	value="${dir.defaultsRepo}/${targetName}/scripts" />
-	<property name="dir.configRepo"		value="${dir.defaultsRepo}/${targetName}/cfg" />
+	<property name="ext.dir.scriptsRepo"	value="${ext.dir.defaultsRepo}/${targetName}/scripts" />
+	<property name="ext.dir.configRepo"		value="${ext.dir.defaultsRepo}/${targetName}/cfg" />
 
 	<property name="stream" value="_stream_"/>
 	<property name="version" value="${main.line}.${stream}"/>
@@ -29,13 +29,13 @@
 	<target name="_extension_name_" description="Builds the extension" >
 		
 		
-		<buildnumber file="${dir.defaultsRepo}/${targetName}/build.number"/>
+		<buildnumber file="${ext.dir.defaultsRepo}/${targetName}/build.number"/>
 		
 		<echo message="Version = ${version}-${build.number}" />
 		
-		<delete file="${dir.defaultsRepo}/${targetName}/MANIFEST.MF" />
+		<delete file="${ext.dir.defaultsRepo}/${targetName}/MANIFEST.MF" />
 
-	    <manifest file="${dir.defaultsRepo}/${targetName}/MANIFEST.MF">
+	    <manifest file="${ext.dir.defaultsRepo}/${targetName}/MANIFEST.MF">
 	        <attribute name="Manifest-Version" value="1.0"/>
 	        <attribute name="Built-By" value="${user.name}"/>
 	        <attribute name="Project" value="${targetName}"/>
@@ -43,11 +43,11 @@
 	        <attribute name="Build-Date" value="${current.time}"/>
 	    </manifest>
 
-		<delete file="${dir.extensions}/${targetName}.jar" />
+		<delete file="${ext.dir.extensions}/${targetName}.jar" />
 		
-		<jar destfile="${dir.extensions}/${targetName}.jar">
+		<jar destfile="${ext.dir.extensions}/${targetName}.jar">
 			
-			<fileset dir="${dir.classesRoot}" casesensitive="yes">
+			<fileset dir="${ext.dir.classesRoot}" casesensitive="yes">
 				<include name="**/ _source_folder_ /*"/>
 			</fileset>
 			
@@ -59,10 +59,10 @@
 	<target name="copy config" description="Copies config files" >
 		
 		<replaceConfig 
-			sourcePath="${dir.configRepo}" fileName="${targetName}.properties" />
+			sourcePath="${ext.dir.configRepo}" fileName="${targetName}.properties" />
 		
 		<replaceFile
-			sourcePath="${dir.configRepo}"  
+			sourcePath="${ext.dir.configRepo}"  
 			destPath="${dir.dist}/bin"
 			fileName="${targetName}.bat" 
 		/>
@@ -76,7 +76,7 @@
 			
 			<zip destfile="${dir.dist}/${targetName}.zip"
 				basedir="${dir.dist}"
-				includes="extensions/${targetName}.jar"
+				includes="**/${targetName}.*"
 			/>
 			
 	</target>

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="Build.proerties">
+<project name="Build Extensions Supports">
 
-	<property name="dir.mavenRepo"		value="C:/Users/Stefan/.m2/repository" />
-	
-	<property name="dir.projectRoot"	value="H:/Git_repository/fskEncoder/FskEncoder-Extensions" />
+	<property name="ext.dir.projectRoot"	value="H:/GitRepository/FskEncoder-Extensions/FskEncoder-Extensions" />
+	<property name="dir.dist"				value="H:/GitSandbox/FskEncoder/dist" />
 
-	<property name="dir.defaultsRepo"	value="${dir.projectRoot}/defaults" />
-
-	<property name="dir.classesRoot"	value="${dir.projectRoot}/target/classes"/>
-	<property name="dir.dist"			value="${dir.projectRoot}/dist" />
-	<property name="dir.extensions"		value="${dir.dist}/extensions" />
+	<property name="ext.dir.classesRoot"	value="${ext.dir.projectRoot}/target/classes"/>
+	<property name="ext.dir.mavenRepo"		value="C:/Users/Stefan/.m2/repository" />
+	<property name="ext.dir.defaultsRepo"	value="${ext.dir.projectRoot}/defaults" />
+	<property name="ext.dir.extensions"		value="${dir.dist}/extensions" />
 
 	<property name="main.line"			value="1" />
 

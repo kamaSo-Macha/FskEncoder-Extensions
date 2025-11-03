@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="build all" name="Z80Trainer">
+<project default="build all" name="Z80TrainerExtension">
 
-	<include file="../BuildSupport.xml" />
+	<include file="../ExtensionsBuildSupport.xml" />
 	
 	<property name="targetName" 		value="${ant.project.name}" />
 	
-	<property name="dir.scriptsRepo"	value="${dir.defaultsRepo}/${targetName}/scripts" />
-	<property name="dir.configRepo"		value="${dir.defaultsRepo}/${targetName}/cfg" />
+	<property name="ext.dir.scriptsRepo"	value="${ext.dir.defaultsRepo}/${targetName}/scripts" />
+	<property name="ext.dir.configRepo"		value="${ext.dir.defaultsRepo}/${targetName}" />
 
 	<property name="stream" value="0"/>
 	
@@ -27,21 +27,21 @@
 
 	</target>
 		
-	<target name="Z80Trainer">
+	<target name="Z80TrainerExtension">
 		
 		<mkManifest 
-			location="${dir.defaultsRepo}/${targetName}" 
+			location="${ext.dir.defaultsRepo}/${targetName}" 
 			version="${version}" 
 			timestamp="${current.time}" 
 		/>
 		
-		<delete file="${dir.extensions}/${targetName}.jar" />
+		<delete file="${ext.dir.extensions}/${targetName}.jar" />
 		
-		<jar destfile="${dir.extensions}/${targetName}.jar" 
-			manifest="${dir.defaultsRepo}/${targetName}/MANIFEST.MF"
+		<jar destfile="${ext.dir.extensions}/${targetName}.jar" 
+			manifest="${ext.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
 		>
 		
-		<fileset dir="${dir.classesRoot}" casesensitive="yes">
+		<fileset dir="${ext.dir.classesRoot}" casesensitive="yes">
 			<include name="**/z80trainer/*"/>
 		</fileset>
 			
@@ -52,6 +52,15 @@
 	
 	<target name="copy config" >
 		
+			<replaceConfig 
+				sourcePath="${ext.dir.configRepo}" fileName="${targetName}.properties" />
+			
+			<replaceFile
+				sourcePath="${ext.dir.configRepo}"  
+				destPath="${dir.dist}/bin"
+				fileName="${targetName}.bat" 
+			/>
+		
 	</target>
 	
 	
@@ -61,7 +70,7 @@
 			
 			<zip destfile="${dir.dist}/${targetName}.zip"
 				basedir="${dir.dist}"
-				includes="extensions/${targetName}.jar"
+				includes="**/${targetName}.*"
 			/>
 			
 	</target>
