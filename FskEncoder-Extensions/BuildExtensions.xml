@@ -32,7 +32,7 @@
 		
 		<zip destfile="${dir.dist}/${ext.target}"
 			basedir="${dir.dist}"
-			excludes="*.zip **/FskEncoder.* **/Extension.properties cfg/Empty.properties"
+			excludes="*.zip **/FskEncoder.* cfg/Empty.properties cfg/Plugin.properties bin/FskEncoder*.bat lib/args4j*.jar lib/log4j*.jar lib/miglayout*.jar"
 		/>
 		
 	</target>
