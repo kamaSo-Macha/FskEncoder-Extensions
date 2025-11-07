@@ -10,6 +10,12 @@
 
 	<property name="stream" value="0"/>
 	<property name="version" value="${main.line}.${stream}"/>
+
+	<buildnumber file="${ext.dir.defaultsRepo}/${targetName}/build.number"/>
+	<property name="build" value="${build.number}" />
+	
+	<property name="release" value ="${version}.${build}" />
+
 	
 	<tstamp>
 		<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
@@ -30,7 +36,7 @@
 		
 		<mkManifest 
 			location="${ext.dir.defaultsRepo}/${targetName}" 
-			version="${version}" 
+			version="${release}" 
 			timestamp="${current.time}" 
 		/>
 		

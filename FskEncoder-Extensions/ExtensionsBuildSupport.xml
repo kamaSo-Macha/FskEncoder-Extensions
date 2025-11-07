@@ -11,7 +11,7 @@
 
 	<property name="main.line"			value="1" />
 
-    <basename property="projectname"	file="${basedir}"/>
+	   <property name="projectname"	value="FskEncoder-Extensions"/>
 	
 	<macrodef name="replaceLibrary" >
 		
@@ -68,16 +68,11 @@
 		<attribute name="timestamp" />
 		
 		<sequential>
-		
-			 <script language="javascript">
-			  arr = project.getProperty('version').split('.');
-			  project.setProperty('line', arr[0]);
-			  project.setProperty('stream', arr[1]);
-			 </script>
-
-			<buildnumber file="@{location}/build.number"/>
-
-			<echo message="Candidate = @{location}, Version = @{version}" />
+			<propertyregex property="lineNbr"	input="@{version}" regexp="^([^\.]+)\."					select="\1" />
+			<propertyregex property="streamNbr"	input="@{version}" regexp="^[^\.]+\.([^\.]+)\."			select="\1" />
+			<propertyregex property="buildNbr"	input="@{version}" regexp="^[^\.]+\.[^\.]+\.([^\.]+)$"	select="\1" />
+			
+			<echo message="Candidate = @{location}, Version = @{version} ->lineNbr:  ${lineNbr}, streamNbr: ${streamNbr}, buildNbr: ${buildNbr}" />
 			
 			<delete file="@{location}/MANIFEST.MF" />
 	
@@ -86,10 +81,10 @@
 		        <attribute name="Built-By" 			value="${user.name}"/>
 		        <attribute name="Project" 			value="${projectname}"/>
 		        <attribute name="Modul" 			value="${targetName}"/>
-				<attribute name="Main-Line"			value="${line}"/>
-				<attribute name="Stream"			value="${stream}"/>
-		        <attribute name="Version" 			value="${build.number}"/>
-		        <attribute name="Build" 			value="@{version}-${build.number}"/>
+				<attribute name="Main-Line"			value="${lineNbr}"/>
+				<attribute name="Stream"			value="${streamNbr}"/>
+		        <attribute name="Build" 			value="${buildNbr}"/>
+		        <attribute name="Version" 			value="@{version}"/>
 		        <attribute name="Build-Date" 		value="@{timestamp}"/>
 		    </manifest>
 		
