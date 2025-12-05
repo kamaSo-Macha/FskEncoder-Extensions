@@ -4,13 +4,12 @@
  * PROJECT       : FskEncoder
  * FILENAME      : Mpf1BitEncoder.java
  *
- * PURPOSE       : Specific bit encoder for Microprofessor I (MFP-I) target.
+ * More information about this project can be found on Github
+ * http://github.com/kamaso-macha/FskEncoder-Extensions
  *
- * This file is part of the FSK-Encoder project. More information about
- * this project can be found here:  http://...
  * **********************************************************************
  *
- * Copyright (C) [2024] by Stefan Dickel, id4mqtt at gmx.de
+ * Copyright (C)2025 by Kama So Macha (http://github.com/kamaso-macha)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -58,7 +57,7 @@ import extension.encoder.WaveCycleEncoder;
  *          + 2 cycles 1000Hz   ( 2 * 1,0 ms = 2 ms )
  *          
  *          |                               ^           |
- *         _|¯|_|¯|_|¯|_|¯|_|¯|_|¯|_|¯|_|¯|_|¯¯|__|¯¯|__|¯
+ *         _|ï¿½|_|ï¿½|_|ï¿½|_|ï¿½|_|ï¿½|_|ï¿½|_|ï¿½|_|ï¿½|_|ï¿½ï¿½|__|ï¿½ï¿½|__|ï¿½
  *          |0   1   2   3   4   5   6   7   0     1    | 
  *    
  *            
@@ -66,7 +65,7 @@ import extension.encoder.WaveCycleEncoder;
  *          + 4 cycles 1000Hz   ( 4 * 1,0 ms = 4 ms )
  *          
  *          |               ^                       |
- *         _|¯|_|¯|_|¯|_|¯|_|¯¯|__|¯¯|__|¯¯|__|¯¯|__|¯
+ *         _|ï¿½|_|ï¿½|_|ï¿½|_|ï¿½|_|ï¿½ï¿½|__|ï¿½ï¿½|__|ï¿½ï¿½|__|ï¿½ï¿½|__|ï¿½
  *          |0   1   2   3   0     1     2     3    | 
  *    
  *    

@@ -4,13 +4,12 @@
  * PROJECT       : FskEncoder
  * FILENAME      : IhxRecord.java
  *
- * PURPOSE       : what is it for?
+ * More information about this project can be found on Github
+ * http://github.com/kamaso-macha/FskEncoder-Extensions
  *
- * This file is part of the FSK-Encoder project. More information about
- * this project can be found here:  http://...
  * **********************************************************************
  *
- * Copyright (C) [2024] by Stefan Dickel, id4mqtt at gmx.de
+ * Copyright (C)2025 by Kama So Macha (http://github.com/kamaso-macha)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -64,7 +63,7 @@ public class IhxRecord extends Record {
 	 
 	 	Intel Hexadecimal Object File Format Specification, Revision A, 1/6/88
 	 
-	 	Intel Hex General Record Format as described in §2 of the specification. 
+	 	Intel Hex General Record Format as described in ï¿½2 of the specification. 
 	 	
 	 	0          1          2          4          5           5+n  
 	 	+----------+----------+----------+----------+-----------+----------+
@@ -175,7 +174,7 @@ public class IhxRecord extends Record {
 	/*
 	 * Verifies the checksum and throws an IhxException on an invalid result.
 	 * The checksum must always be 0!
-	 * Refer to the IHX specification §2 for detailed information.
+	 * Refer to the IHX specification ï¿½2 for detailed information.
 	 */
 	protected void checksum() throws IhxException {
 		logger.trace("checksum()");
